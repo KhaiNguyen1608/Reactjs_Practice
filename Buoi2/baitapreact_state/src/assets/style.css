@@ -1,0 +1,27 @@
+
+
+img {
+    width: 100%
+}
+li {
+    list-style-type: none;
+}
+
+.content-right,.content-left {
+    background-image: url(./img/glassesImage/model.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 485px;
+    height: 600px;
+}
+
+
+.content-right img {
+    top: 149px;
+    left: 113px;
+    /* bottom: 64px; */
+    position: relative;
+    opacity: 0.9;
+    width: 270px;
+    height: 100px;
+}
