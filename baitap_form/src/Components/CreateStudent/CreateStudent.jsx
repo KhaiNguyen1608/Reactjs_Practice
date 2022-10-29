@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { addNewStudent } from '../../Redux/Reducer/StudenReducer';
 import { connect } from 'react-redux';
+import StudentView from '../StudentView/StudentView';
+
 class CreateStudent extends Component {
 
   constructor(props) {
@@ -34,9 +36,7 @@ class CreateStudent extends Component {
       <div className='container'>
         <form onSubmit={ this.onFormSubmit }>
             <div className='bg-dark text-white p-1 mb-3'><h2>Thông tin sinh viên</h2></div>
-
             <div className="mb-3 row">
-                
                <div className="col-6">
                     <div>
                         <label htmlFor="inputName" className="col-4 col-form-label">Mã SV</label>
@@ -71,11 +71,12 @@ class CreateStudent extends Component {
             </div>
             
             <div className="mb-3 row">
-                <div className="offset-sm-4 col-sm-8">
-                <button type="submit" className="btn btn-primary">Action</button>
+                <div className="col-sm-8">
+                <button type="submit" className="btn btn-primary">Thêm SV</button>
                 </div>
             </div>
         </form>
+        <StudentView/>
       </div>
     )
   }
@@ -83,11 +84,9 @@ class CreateStudent extends Component {
 
 
 const mapStateToProps = (state) => ({
-    
+   
 });
 
-
-// => { return {} }   <=> => ({})
 
 
 
