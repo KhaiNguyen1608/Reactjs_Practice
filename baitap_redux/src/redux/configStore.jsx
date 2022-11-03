@@ -1,11 +1,8 @@
 import {configureStore} from '@reduxjs/toolkit';
+import renderOrder from './reducers/orderSeatReducer'
 
 export const store = configureStore({
     reducer: {
-        // Nơi chứa toàn bộ state của ứng dụng
-
-        // stateA: ()=>{
-
-        // }
+        renderOrder: renderOrder
     }
 });

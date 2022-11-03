@@ -1,15 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-
-}
+    seatNumber: '',
+};
 
 const orderSeatReducer = createSlice({
-  name: second,
+  name: 'orderSeatReducer',
   initialState,
-  reducers: {}
+  reducers: {
+    renderOrder: (state, action) => {
+      state.seatNumber = action.payload;
+    },
+
+  }
 });
 
-export const {} = orderSeatReducer.actions
+export const {renderOrder} = orderSeatReducer.actions
 
 export default orderSeatReducer.reducer
