@@ -7,7 +7,7 @@ export default function OrderTicket() {
     const dispatch = useDispatch();
      //Lấy dữ liệu từ state trong store
     const seatNumber = useSelector(state => state.orderSeatReducer.seatNumber)
-    
+    const [totalMoney, setTotalMoney] = useState(0);
     const changeColor = (e) => {
         e.currentTarget.style.backgroundColor = 'rgb(109, 238, 109)';
         let tmpSeat = e.currentTarget.innerHTML
@@ -15,10 +15,11 @@ export default function OrderTicket() {
         dispatch(action)
     }
 
-    let totalMoney = 0;
+    
     useEffect(() => {
-       if(seatNumber.at(-1) !== '') {
-            totalMoney = totalMoney + 75000
+        debugger
+       if(seatNumber.at(-1) !== '' && seatNumber.at(-1) !== undefined) {
+            setTotalMoney(totalMoney + 750000)
        }
     }, [seatNumber]);
     
@@ -68,18 +69,18 @@ export default function OrderTicket() {
                                     <div>
                                         <div className="text-light text-left ml-5 mt-1" style={{fontSize: 30}}>
                                             <div>B 
-                                                        <button className="ghe  ">B1</button>
-                                                        <button className="ghe  ">B2</button>
-                                                        <button className="ghe  ">B3</button>
-                                                        <button className="ghe  ">B4</button>
-                                                        <button className="ghe  ">B5</button>
-                                                        <button className="ghe  ">B6</button>
-                                                        <button className="ghe  ">B7</button>
-                                                        <button className="ghe  ">B8</button>
-                                                        <button className="ghe  ">B9</button>
-                                                        <button className="ghe  ">B10</button>
-                                                        <button className="ghe  ">B11</button>
-                                                        <button className="ghe  ">B12</button>
+                                                        <button className="ghe  " onClick={changeColor}>B1</button>
+                                                        <button className="ghe  " onClick={changeColor}>B2</button>
+                                                        <button className="ghe  " onClick={changeColor}>B3</button>
+                                                        <button className="ghe  " onClick={changeColor}>B4</button>
+                                                        <button className="ghe  " onClick={changeColor}>B5</button>
+                                                        <button className="ghe  " onClick={changeColor}>B6</button>
+                                                        <button className="ghe  " onClick={changeColor}>B7</button>
+                                                        <button className="ghe  " onClick={changeColor}>B8</button>
+                                                        <button className="ghe  " onClick={changeColor}>B9</button>
+                                                        <button className="ghe  " onClick={changeColor}>B10</button>
+                                                        <button className="ghe  " onClick={changeColor}>B11</button>
+                                                        <button className="ghe  " onClick={changeColor}>B12</button>
                                                 </div>
                                             </div>
                                     </div>
@@ -87,18 +88,18 @@ export default function OrderTicket() {
                                     <div>
                                         <div className="text-light text-left ml-5 mt-1" style={{fontSize: 30}}>
                                             <div>D 
-                                                <button className="ghe  ">D1</button>
-                                                <button className="ghe  ">D2</button>
-                                                <button className="ghe  ">D3</button>
-                                                <button className="ghe  ">D4</button>
-                                                <button className="ghe  ">D5</button>
-                                                <button className="ghe  ">D6</button>
-                                                <button className="ghe  ">D7</button>
-                                                <button className="ghe  ">D8</button>
-                                                <button className="ghe  ">D9</button>
-                                                <button className="ghe  ">D10</button>
-                                                <button className="ghe  ">D11</button>
-                                                <button className="ghe  ">D12</button>
+                                                <button className="ghe  " onClick={changeColor}>D1</button>
+                                                <button className="ghe  " onClick={changeColor}>D2</button>
+                                                <button className="ghe  " onClick={changeColor}>D3</button>
+                                                <button className="ghe  " onClick={changeColor}>D4</button>
+                                                <button className="ghe  " onClick={changeColor}>D5</button>
+                                                <button className="ghe  " onClick={changeColor}>D6</button>
+                                                <button className="ghe  " onClick={changeColor}>D7</button>
+                                                <button className="ghe  " onClick={changeColor}>D8</button>
+                                                <button className="ghe  " onClick={changeColor}>D9</button>
+                                                <button className="ghe  " onClick={changeColor}>D10</button>
+                                                <button className="ghe  " onClick={changeColor}>D11</button>
+                                                <button className="ghe  " onClick={changeColor}>D12</button>
                                             </div>
                                         </div>
                                     </div>
@@ -134,13 +135,13 @@ export default function OrderTicket() {
                                                             
                                                             </thead>
                                                             <tbody className="text-warning" />
-                                                                <tfoot>
-                                                                    <tr className="text-warning">
-                                                                        <td />
-                                                                        <td>Tổng tiền</td>
-                                                                        <td>{totalMoney}</td>
-                                                                    </tr>
-                                                                </tfoot>
+                                                            <tfoot>
+                                                                <tr className="text-warning">
+                                                                    <td />
+                                                                    <td>Tổng tiền</td>
+                                                                    <td>{totalMoney}</td>
+                                                                </tr>
+                                                            </tfoot>
                                                     </table>
                                             </div>
                                     </div>
