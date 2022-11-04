@@ -1,25 +1,28 @@
 import React, {useState, useEffect} from 'react'
 import "../style/BaiTapBookingTicket.css"
 import { useSelector, useDispatch } from 'react-redux'
-import renderOrder from '../redux/reducers/orderSeatReducer';
+import {renderOrder} from '../redux/reducers/orderSeatReducer';
 
 export default function OrderTicket() {
     const dispatch = useDispatch();
      //Lấy dữ liệu từ state trong store
-    // const tmpNumber = useSelector(selectNumber)
-    const [mySeat, setMySeat] = useState('');
+    const seatNumber = useSelector(state => state.orderSeatReducer.seatNumber)
     
     const changeColor = (e) => {
         e.currentTarget.style.backgroundColor = 'rgb(109, 238, 109)';
-        console.log(e.currentTarget.innerHTML)
-        const action = renderOrder(e.currentTarget.innerHTML)
+        let tmpSeat = e.currentTarget.innerHTML
+        const action = renderOrder(tmpSeat)
         dispatch(action)
     }
 
+    let totalMoney = 0;
     useEffect(() => {
-       
-      }, []);
+       if(seatNumber.at(-1) !== '') {
+            totalMoney = totalMoney + 75000
+       }
+    }, [seatNumber]);
     
+    console.log(seatNumber)
     return (
         <div className='bgTicket'>
             <div className="bookingMovie" style={{position: 'fixed', width: '100%', height: '100%', backgroundImage: 'url("./img/bookingTicket/bgmovie.jpg")', backgroundSize: '100%'}}>
@@ -103,35 +106,44 @@ export default function OrderTicket() {
                                 </div>
                             </div>
                             <div className="col-4">
-                                                        <div className="text-light mt-2" style={{fontSize: 35}}>DANH SÁCH GHẾ BẠN CHỌN</div>
-                                                        <div>
-                                                            <div className="mt-5">
-                                                                <button className="gheDuocChon"> </button> 
-                                                                <span className="text-light" style={{fontSize: 30}}>ghế đã đặt</span><br />
-                                                                <button className="gheDangChon"> </button> 
-                                                                <span className="text-light" style={{fontSize: 30}}>ghế đang đặt</span><br />
-                                                                <button className="ghe" style={{marginLeft: 0}}> </button> <span className="text-light" style={{fontSize: 30}}>ghế chưa đặt</span></div>
-                                                                <div className="mt-5">
-                                                                    <table className="table" border={2}>
-                                                                        <thead>
-                                                                            <tr className="text-light" style={{fontSize: 25}}>
-                                                                                <th>Số ghế</th>
-                                                                                <th>Giá</th>
-                                                                                <th />
-                                                                            </tr>
-                                                                            </thead>
-                                                                            <tbody className="text-warning" />
-                                                                                <tfoot>
-                                                                                    <tr className="text-warning">
-                                                                                        <td />
-                                                                                        <td>Tổng tiền</td>
-                                                                                        <td>0</td>
-
-                                                                                    </tr>
-                                                                                    </tfoot>
-                                                                                    </table>
-                                                                                    </div>
-                                                                                    </div>
+                                    <div className="text-light mt-2" style={{fontSize: 35}}>DANH SÁCH GHẾ BẠN CHỌN</div>
+                                        <div>
+                                            <div className="mt-5">
+                                                <button className="gheDuocChon"> </button> 
+                                                <span className="text-light" style={{fontSize: 30}}>ghế đã đặt</span><br />
+                                                <button className="gheDangChon"> </button> 
+                                                <span className="text-light" style={{fontSize: 30}}>ghế đang đặt</span><br />
+                                                <button className="ghe" style={{marginLeft: 0}}> </button> <span className="text-light" style={{fontSize: 30}}>ghế chưa đặt</span></div>
+                                                <div className="mt-5">
+                                                    <table className="table" border={2}>
+                                                        <thead>
+                                                            <tr className="text-light" style={{fontSize: 25}}>
+                                                                <th>Số ghế</th>
+                                                                <th>Giá</th>
+                                                                <th />
+                                                            </tr>
+                                                            {
+                                                                seatNumber.map((value, index) => {
+                                                                    return <tr  className="text-light" style={{fontSize: 20}} key={index}>
+                                                                            <td>{value}</td>
+                                                                            <td>75,000</td>
+                                                                            <td/>
+                                                                        </tr>
+                                                                })
+                                                            }
+                                                            
+                                                            </thead>
+                                                            <tbody className="text-warning" />
+                                                                <tfoot>
+                                                                    <tr className="text-warning">
+                                                                        <td />
+                                                                        <td>Tổng tiền</td>
+                                                                        <td>{totalMoney}</td>
+                                                                    </tr>
+                                                                </tfoot>
+                                                    </table>
+                                            </div>
+                                    </div>
                             </div>
                         </div>
                     </div>

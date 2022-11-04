@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    seatNumber: '',
+    seatNumber: [
+
+    ],
 };
 
 const orderSeatReducer = createSlice({
@@ -9,9 +11,8 @@ const orderSeatReducer = createSlice({
   initialState,
   reducers: {
     renderOrder: (state, action) => {
-      state.seatNumber = action.payload;
+      state.seatNumber.push(action.payload);
     },
-
   }
 });
 
