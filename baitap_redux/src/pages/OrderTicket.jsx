@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import "../style/BaiTapBookingTicket.css"
 import { useSelector, useDispatch } from 'react-redux'
-import {renderOrder} from '../redux/reducers/orderSeatReducer';
+import {renderOrder, deleteOrder} from '../redux/reducers/orderSeatReducer';
 
 export default function OrderTicket() {
     const dispatch = useDispatch();
@@ -15,15 +15,18 @@ export default function OrderTicket() {
         dispatch(action)
     }
 
+    const deleteSeatOrder = (e) => {
+        let tmpSeat = e.currentTarget.value
+        const action = deleteOrder(tmpSeat)
+        dispatch(action)
+    }
     
     useEffect(() => {
-        debugger
        if(seatNumber.at(-1) !== '' && seatNumber.at(-1) !== undefined) {
             setTotalMoney(totalMoney + 750000)
        }
     }, [seatNumber]);
     
-    console.log(seatNumber)
     return (
         <div className='bgTicket'>
             <div className="bookingMovie" style={{position: 'fixed', width: '100%', height: '100%', backgroundImage: 'url("./img/bookingTicket/bgmovie.jpg")', backgroundSize: '100%'}}>
@@ -128,11 +131,10 @@ export default function OrderTicket() {
                                                                     return <tr  className="text-light" style={{fontSize: 20}} key={index}>
                                                                             <td>{value}</td>
                                                                             <td>75,000</td>
-                                                                            <td/>
+                                                                            <td><button value={value} className="btn btn-danger" onClick={deleteSeatOrder}>Xóa</button></td>
                                                                         </tr>
                                                                 })
                                                             }
-                                                            
                                                             </thead>
                                                             <tbody className="text-warning" />
                                                             <tfoot>
